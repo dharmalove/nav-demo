@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的导航</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="wrapper" id="box">
+        </div>
+    </main>
+    <footer></footer>
+</body>
+<script>
+    //1.初始化数据
+    var keys = {
+        '0':{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+        '1':{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+        '2':{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
+        'length': 3
+    }
+    var hash = {
+        q: 'qq.com',
+        w: 'weibo.com',
+        e: 'ele.me',
+        r: 'runoob.com',
+        t: 'taobao.com',
+        y: 'yy.com',
+        u: 'uu.163.com',
+        i: 'iqiyi.com',
+        o: 'opera.com',
+        p: 'pconline.com.cn',
+        a: 'amazon.cn',
+        s: 'so.com',
+        d: 'douban.com',
+        f: 'fang.com',
+        g: 'google.com',
+        h: 'hupu.com',
+        j: 'jscode.me',
+        k: 'kuaishou.com',
+        l: 'leiphone.com',
+        z: 'zhihu.com',
+        x: 'xunlei.com',
+        c: 'coolapk.com',
+        v: 'v2ex.com',
+        b: 'baidu.com',
+        n: 'nike.com',
+        m: 'mafengwo.cn'
+    }
+    var hashInLocalStorage = getFromLocalStorage('zzz')
+    if(hashInLocalStorage){
+        hash = hashInLocalStorage
+    }
+
+    //2.生成键盘
+
+    for(var index=0;index < keys['length'];index+=1){
+        var div1 = cTag('div',{className:'row'})
+        box.appendChild(div1)
+
+        var row = keys[index]
+
+
+        for(var index2=0;index2<row['length'];index2 += 1){
+            var jian = cTag('kbd',{className:'key'})
+            var span = cTag('span',{className:'text'})
+            span.textContent = row[index2]
+
+            
+            var btn = cTag('button',{textContent:"E"})
+            btn.id = row[index2]
+            btn.onclick = function (e) {
+                var img2 = e.target.previousSibling
+                console.log(img2)
+                var key = e.target['id']
+                var accept = prompt('自定义网址')
+                hash[key] = accept
+                img2.src = 'http://' + accept + '/favicon.ico'
+                img2.onerror = function (e) {
+                    e.target.src = '//i.loli.net/2019/03/24/5c97554449392.png'
+                }
+                localStorage.setItem('zzz', JSON.stringify(hash))
+            }
+
+
+            var img = cTag('img')
+            if(hash[row[index2]]){
+                img.src = 'http://' + hash[row[index2]] + '/favicon.ico'
+            }else{
+                img.src = '//i.loli.net/2019/03/24/5c97554449392.png'
+            }
+            img.onerror = function (e) {
+                e.target.src = '//i.loli.net/2019/03/24/5c97554449392.png'
+            }
+            jian.appendChild(span)
+            jian.appendChild(img)
+            jian.appendChild(btn)
+            div1.appendChild(jian)
+        }
+    }
+
+    // 3.监听键盘
+    document.onkeypress = function (e) {
+        var key = e['key']
+        var website = hash[key]
+        //location.href = 'http://' + website
+        window.open('http://' + website, '_blank')
+    }
+
+    function getFromLocalStorage(name) {
+        return JSON.parse(localStorage.getItem(name) || 'null')
+    }
+    function cTag(tagName,attributes) {
+        var element = document.createElement(tagName)
+        for(var key in attributes){
+            element[key] = attributes[key]
+        }
+        return element
+    }
+</script>
+</html>

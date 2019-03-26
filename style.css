@@ -1,0 +1,89 @@
+*{margin:0;padding:0;}
+a{text-decoration: none;}
+body{
+    background: #6F6F6F url("./wall.jpg") no-repeat center center;
+    background-size: cover;
+}
+kbd{
+    position: relative;
+    text-transform: uppercase;
+}
+.row{
+    margin: 20px;
+}
+.key{
+    display: inline-block;
+    margin: 0 10px;
+    width: 75px;
+    height: 60px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),to(#f1f1f1));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#f1f1f1 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 100%);
+    border: 1px solid #F2F2F2;
+    color: #9F9F9F;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 0 0 #B6B6B6,0 4px 0 1px #C8C8C8,0 5px 5px 1px #6F6F6F;
+    box-shadow: 0 0 0 0 #B6B6B6,0 4px 0 1px #C8C8C8,0 5px 5px 1px #6F6F6F;
+    font-size: 20px;
+    font-family: helvetica;
+    position: relative;
+}
+.key .text{
+    position: absolute;
+    top: 4px;
+    left: 8px;
+}
+.key img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 4px;
+    left: 8px;
+}
+kbd:hover > button{
+    display: inline-block;
+}
+kbd > button{
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+    display: none;
+    margin: 0;
+    padding: 0 3px;
+    border: 1px solid transparent;
+    outline: none;
+    background: #F89C1C;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-family: Frutiger,Helvetica,sans-serif;
+}
+kbd > button:hover{
+    background: #2E2E2E;
+}
+main{
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100vh;
+}
+#box{
+    display: inline-block;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 20px 0;
+}
+#box > div:nth-child(2){
+    margin-left: -24px;
+}
+#box > div:nth-child(3){
+    margin-left: -118px;
+}
